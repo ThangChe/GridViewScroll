@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "onItemLongClick - position: " + position, Toast.LENGTH_SHORT).show();
                 Log.i("thang.tien","onItemLongClick - position: " + position);
                 Log.i("thang.tien","ahfjkhsd");
-                Log.i("thang.tien","test2");
                 adapter.setIsSelecting(true);
                 adapter.selectItem(position);
                 return true;
