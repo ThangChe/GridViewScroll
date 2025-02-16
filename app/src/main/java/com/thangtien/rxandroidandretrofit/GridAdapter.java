@@ -16,7 +16,7 @@ import java.util.List;
 
 public class GridAdapter extends BaseAdapter {
 
-    private final List<GridItem> gridItems;
+    private final List<Item> items;
     private final Context context;
     private GridView gridView;
     private int startPosition = -1;
@@ -29,9 +29,9 @@ public class GridAdapter extends BaseAdapter {
         return isSelecting;
     }
 
-    public GridAdapter(Context context, List<GridItem> gridItems) {
+    public GridAdapter(Context context, List<Item> items) {
         this.context = context;
-        this.gridItems = gridItems;
+        this.items = items;
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -47,12 +47,12 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return gridItems.size();
+        return items.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return gridItems.get(position);
+        return items.get(position);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class GridAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        GridItem item = gridItems.get(position);
+        Item item = items.get(position);
         holder.checkBox.setChecked(item.isChecked());
         holder.textView.setText(item.getText());
 
@@ -108,10 +108,10 @@ public class GridAdapter extends BaseAdapter {
 
         int min = Math.min(start, end);
         int max = Math.max(start, end);
-        boolean select = !gridItems.get(start).isChecked();
+        boolean select = !items.get(start).isChecked();
 
         for (int i = min; i <= max; i++) {
-            GridItem item = gridItems.get(i);
+            Item item = items.get(i);
             item.setChecked(select);
             notifyDataSetChanged();
             autoScroll(i);
@@ -119,8 +119,8 @@ public class GridAdapter extends BaseAdapter {
     }
 
     public void selectItem(int position) {
-        if (position >= 0 && position < gridItems.size()) {
-            GridItem item = gridItems.get(position);
+        if (position >= 0 && position < items.size()) {
+            Item item = items.get(position);
             item.setChecked(!item.isChecked());
             notifyDataSetChanged();
             autoScroll(position);
@@ -163,7 +163,7 @@ public class GridAdapter extends BaseAdapter {
             int lastVisibleItemPosition = gridView.getLastVisiblePosition();
             if (lastTouchedPosition != -1) {
                 if (scrollOffset > 0) {
-                    if (lastVisibleItemPosition < gridItems.size() - 1) {
+                    if (lastVisibleItemPosition < items.size() - 1) {
                         lastTouchedPosition = lastVisibleItemPosition + 1;
                         selectRange(startPosition, lastTouchedPosition);
                     }

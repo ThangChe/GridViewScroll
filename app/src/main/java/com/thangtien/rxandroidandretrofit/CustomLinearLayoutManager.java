@@ -1,0 +1,25 @@
+package com.thangtien.rxandroidandretrofit;
+
+import android.content.Context;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+public class CustomLinearLayoutManager  extends LinearLayoutManager {
+    private boolean isScrollEnabled = true;
+    public CustomLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+        super(context, orientation, reverseLayout);
+    }
+    public void setScrollEnabled(boolean flag) {
+        this.isScrollEnabled = flag;
+    }
+
+    @Override
+    public boolean canScrollVertically() {
+        return isScrollEnabled && super.canScrollVertically();
+    }
+
+    @Override
+    public boolean canScrollHorizontally() {
+        return isScrollEnabled && super.canScrollHorizontally();
+    }
+}
