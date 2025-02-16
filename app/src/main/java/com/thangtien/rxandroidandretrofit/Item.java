@@ -1,10 +1,10 @@
 package com.thangtien.rxandroidandretrofit;
 
-public class GridItem {
+public class Item {
     private String text;
     private boolean checked;
 
-    public GridItem(String text, boolean checked) {
+    public Item(String text, boolean checked) {
         this.text = text;
         this.checked = checked;
     }
